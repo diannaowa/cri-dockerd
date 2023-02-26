@@ -131,12 +131,12 @@ func (ds *dockerService) PullImage(
 		return nil, filterHTTPError(err, image.Image)
 	}
 
-	imageRef, err := getImageRef(ds.client, image.Image)
-	if err != nil {
-		return nil, err
-	}
+	//imageRef, err := getImageRef(ds.client, image.Image)
+	//if err != nil {
+	//	return nil, err
+	//}
 
-	return &runtimeapi.PullImageResponse{ImageRef: imageRef}, nil
+	return &runtimeapi.PullImageResponse{ImageRef: image.Image}, nil
 }
 
 // RemoveImage removes the image.

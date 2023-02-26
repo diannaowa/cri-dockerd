@@ -19,6 +19,7 @@ package core
 import (
 	"context"
 	"fmt"
+
 	"github.com/Mirantis/cri-dockerd/libdocker"
 	"github.com/sirupsen/logrus"
 	v1 "k8s.io/cri-api/pkg/apis/runtime/v1"
@@ -116,9 +117,10 @@ func (ds *dockerService) ContainerStatus(
 
 	labels, annotations := extractLabels(r.Config.Labels)
 	imageName := r.Config.Image
-	if ir != nil && len(ir.RepoTags) > 0 {
-		imageName = ir.RepoTags[0]
-	}
+	// TODO  maybe,we should check imageName is in ir.RepoTags
+	//if ir != nil && len(ir.RepoTags) > 0 {
+	//	imageName = ir.RepoTags[0]
+	//}
 	status := &v1.ContainerStatus{
 		Id:          r.ID,
 		Metadata:    metadata,
